@@ -46,7 +46,7 @@ const BudgetTracker = () => {
     <div>
       <h2 className="text-xl font-bold mb-4">Monthly Budget Tracker</h2>
 
-      <div>
+      {/* <div>
         {budgetData?.map((item) => {
           return (
             <div>
@@ -57,7 +57,7 @@ const BudgetTracker = () => {
             </div>
           );
         })}
-      </div>
+      </div> */}
       {/* <div className="mb-4">
         <p className="text-lg">Budget: ${budgetData.budget.toFixed(2)}</p>
         <p className="text-lg">Spent: ${budgetData.spent.toFixed(2)}</p>
