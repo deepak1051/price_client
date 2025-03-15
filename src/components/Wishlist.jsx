@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import WishlistCard from './WishlistCard';
+import { API_BASE_URL } from '../api';
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
 
   const fetchWishlist = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/wishlist');
+      const response = await axios.get(`${API_BASE_URL}/api/wishlist`);
       setWishlist(response.data);
     } catch (error) {
       console.log(error);
@@ -22,7 +23,7 @@ const Wishlist = () => {
 
   const markPurchased = async (itemId, purchased) => {
     try {
-      await axios.put(`http://localhost:5000/api/wishlist/item/${itemId}`, {
+      await axios.put(`${API_BASE_URL}/api/wishlist/item/${itemId}`, {
         purchased,
       });
       fetchWishlist();
@@ -41,7 +42,7 @@ const Wishlist = () => {
 
   const removeItem = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/wishlist/item/${itemId}`);
+      await axios.delete(`${API_BASE_URL}/api/wishlist/item/${itemId}`);
       fetchWishlist();
     } catch (error) {
       console.log(error);

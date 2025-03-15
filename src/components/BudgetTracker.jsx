@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../api';
 
 const BudgetTracker = () => {
   const [budgetData, setBudgetData] = useState([]);
@@ -9,7 +10,7 @@ const BudgetTracker = () => {
 
   const fetchBudget = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/budget');
+      const response = await axios.get(`${API_BASE_URL}/api/budget`);
 
       console.log('response', response);
       setBudgetData(response.data);
@@ -26,7 +27,7 @@ const BudgetTracker = () => {
   const handleBudgetUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/budget', {
+      await axios.post(`${API_BASE_URL}/api/budget`, {
         amount: parseFloat(newBudget),
         month,
         year,

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../api';
 
 export default function WishlistCard({ monthData, markPurchased, removeItem }) {
   const [budgetSummary, setBudgetSummary] = useState(null);
@@ -8,7 +9,7 @@ export default function WishlistCard({ monthData, markPurchased, removeItem }) {
   const getBudgetSummary = async (month, year) => {
     try {
       const resp = await axios.get(
-        `http://localhost:5000/api/budget/summary/${month}/${year}`
+        `${API_BASE_URL}/api/budget/summary/${month}/${year}`
       );
       setBudgetSummary(resp.data);
     } catch (error) {

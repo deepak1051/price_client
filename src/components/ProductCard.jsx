@@ -1,20 +1,18 @@
 import axios from 'axios';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../api';
 
 const ProductCard = ({ product, onSelect }) => {
   const handleAddToWishlist = async ({ store, price }) => {
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/wishlist/item`,
-        {
-          productId: product._id,
-          store,
-          price,
-          month: new Date().getMonth() + 1,
-          year: new Date().getFullYear(),
-        }
-      );
+      const response = await axios.post(`${API_BASE_URL}/api/wishlist/item`, {
+        productId: product._id,
+        store,
+        price,
+        month: new Date().getMonth() + 1,
+        year: new Date().getFullYear(),
+      });
 
       console.log(response);
       toast.success('Added to wishlist');

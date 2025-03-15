@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../api';
 
 const ProductSearch = ({ onProductSelect }) => {
   const [query, setQuery] = useState('');
@@ -12,7 +13,7 @@ const ProductSearch = ({ onProductSelect }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/products');
+        const response = await axios.get(`${API_BASE_URL}/api/products`);
         setStockProducts(response.data);
       } catch (error) {
         console.log(error);
@@ -27,7 +28,7 @@ const ProductSearch = ({ onProductSelect }) => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/products/search?query=${query}`
+        `${API_BASE_URL}/api/products/search?query=${query}`
       );
       setProducts(response.data);
     } catch (error) {
